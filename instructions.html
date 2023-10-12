@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            overflow: auto;
+            background-color: #f0f8ff;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #eef;
+            align-items: center;
+            box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.1);
+        }
+        @keyframes animated-border {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0,123,255,0.4);
+            }
+            100% {
+                box-shadow: 0 0 0 20px rgba(0,123,255,0);
+            }
+        }
+        .instruction-box {
+            animation: animated-border 1.5s infinite;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.1);
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+        .button-group button {
+            padding: 10px 20px;
+            background-color: #0047ab;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .button-group button:hover {
+            background-color: #007fff;
+        }
+        #next {
+            padding: 10px 20px;
+            background-color: #0047ab;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #next:hover{
+            background-color: #007fff;
+        }
+        #next-col {
+            padding: 10px 20px;
+            background-color: #0047ab;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #next-col:hover{
+            background-color: #007fff;
+        }
+        #next-test {
+            padding: 10px 20px;
+            background-color: #0047ab;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #next-test:hover{
+            background-color: #007fff;
+        }
+        .lower-section {
+            display: None;
+            flex-direction: column;
+            align-items: center;
+        }
+        .text-prompt {
+            font-size: 1.2em;
+            margin: 20px;
+            padding: 10px;
+            font-size: 1.5em;
+            color: #0047ab;
+            background-color: #f0f8ff;
+            border-radius: 5px;
+            box-shadow: 4px 4px 8px rgba(0,0,0,0.2);/
+        }
+        .image-area {
+            animation: animated-border 1.5s infinite;
+            width: 100%;
+            height: 850px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+        var promptsCal = ["AirTouch", "Touch", "Tickle", "Pick-up"];
+        var promptsCol = ["Extend", "Compress", "Twist", "Bending"];
+        var promptsTest = ["Test1", "Test2", "Test3", "Test4", "Test5"];
+        function showCalibration() {
+            if (promptsCal.length > 0) {
+                var randomIndex = Math.floor(Math.random() * promptsCal.length);
+                var randomPrompt = promptsCal[randomIndex];
+                document.getElementById("text-prompt").innerText = randomPrompt;
+                promptsCal.splice(randomIndex, 1);
+            } else {
+                alert("You've done all the calibrations. ");
+                document.getElementById("Calibration").style.display = "None";
+            }
+        };
+        function showCollection() {
+            if (promptsCol.length > 0) {
+                var randomIndex = Math.floor(Math.random() * promptsCol.length);
+                var randomPrompt = promptsCol[randomIndex];
+                document.getElementById("text-prompt-col").innerText = randomPrompt;
+                promptsCol.splice(randomIndex, 1);
+            } else {
+                alert("You've done all the data collection movements. ");
+                document.getElementById("Collection").style.display = "None";
+            }
+        };
+        function showTesting() {
+            if (promptsTest.length > 0) {
+                var randomIndex = Math.floor(Math.random() * promptsTest.length);
+                var randomPrompt = promptsTest[randomIndex];
+                document.getElementById("text-prompt-test").innerText = randomPrompt;
+                promptsTest.splice(randomIndex, 1);
+            } else {
+                alert("You've done all the testing data collection. ");
+                document.getElementById("Testing").style.display = "None";
+            }
+        };
+        function switchDisplayCalibration() {
+            document.getElementById("Calibration").style.display = "flex";
+        }
+        function switchDisplayCollection() {
+            document.getElementById("Collection").style.display = "flex";
+        }
+        function switchDisplayTesting() {
+            document.getElementById("Testing").style.display = "flex";
+        }
+        function playSound() {
+            var sound = document.getElementById("beep-sound");
+            setTimeout(function (){
+                sound.play();
+            }, 3000);/*First sound indicating the start of the movement will be played in 3 seconds*/
+            setTimeout(function (){
+                sound.play();/*Second sound indicating the end of the movement will be played in 10 seconds after the first one*/
+            }, 13000)
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Fluxable: Design and Fabrication of Interactive Objects Using Inductive Sensing</h1>
+        <img src="lablogo_200x200.jpg" alt="实验室logo" />
+    </div>
+    <div class="instruction-box">
+        <ul>
+            <li><p>Welcome to this study! Your participation is very important to our research. </p></li>
+            <li><p>Our research team developed a new sensing technique to convert 3D-printed objects into interactive devices. </p></li>
+            <li><p>The purpose of this study is to investigate if this new technique is accurate, reliable, and robust across different individuals and application contexts. </p></li>
+            <li><p>Before the experiment actually begins, please make sure that you understand the goals and the whole process of the experiment.</p></li>
+            <li><p>During the experiment, please make sure your cellphone is off in case of any external interference and electromagnetic effects caused by cell phones. </p></li>
+            <li><p>Please follow the instructions from the research staff, and conduct movements according to what the screen shows you. </p></li>
+            <li><p>After this study finishes, you will get a $10 gift card to thank you for your participation. </p></li>
+            <li><p>Please feel free to let any one of us know if you have any problems with your experiment or other help. </p></li>
+        </ul>
+    </div>
+    <div class="button-group">
+        <button onclick="switchDisplayCalibration()">Calibration</button>
+        <button onclick="switchDisplayCollection()">Collection</button>
+        <button onclick="switchDisplayTesting()">Testing</button>
+    </div>
+
+    <div class="lower-section" id="Calibration">
+        <div class="text-prompt" id="text-prompt"></div>
+        <div class="image-area">
+            <!-- Images here -->
+        </div>
+        <button id="next" onclick="showCalibration(), playSound()">Next</button>
+    </div>
+
+
+    <div class="lower-section" id="Collection">
+        <div class="text-prompt" id="text-prompt-col"></div>
+        <div class="image-area">
+            <!-- Images here -->
+        </div>
+        <button id="next-col" onclick="showCollection(), playSound()">Next</button>
+    </div>
+
+    <div class="lower-section" id="Testing">
+        <div class="text-prompt" id="text-prompt-test"></div>
+        <div class="image-area">
+            <!-- Images here -->
+        </div>
+        <button id="next-test" onclick="showTesting(), playSound()">Next</button>
+        <audio id="beep-sound">
+            <source src="beep.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <!--Testing still needs to show the result here, add them when testing the router-->
+    </div>
+
+</body>
+</html>
